@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialCarousel();
     initServiceCardAnimations();
     initScrollRevealAnimations();
+    wireHeroHoverForChaseMode();
 });
 
 /* ==========================================================================
@@ -230,6 +231,22 @@ function initHeroTextAnimation() {
             heroPanel.style.transform = 'translateY(0) scale(1)';
         }, 500);
     }
+}
+
+// Make hero title hover trigger excited chase mode on the 3D dog
+function wireHeroHoverForChaseMode() {
+    const heroTitle = document.querySelector('.hero-text-panel h1');
+    if (!heroTitle) return;
+    heroTitle.addEventListener('mouseenter', () => {
+        if (window.dog3DInstance && typeof window.dog3DInstance.startChaseMode === 'function') {
+            window.dog3DInstance.startChaseMode();
+        }
+    });
+    heroTitle.addEventListener('mouseleave', () => {
+        if (window.dog3DInstance && typeof window.dog3DInstance.stopChaseMode === 'function') {
+            window.dog3DInstance.stopChaseMode();
+        }
+    });
 }
 
 /* ==========================================================================

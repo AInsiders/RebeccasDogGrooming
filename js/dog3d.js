@@ -16,6 +16,9 @@ class Dog3D {
         this.isWagging = false;
         this.tailWagDirection = 1;
         this.animationId = null;
+        this.velocity = { x: 0, z: 0 };
+        this.lastTime = performance.now();
+        this.chaseMode = false;
         
         this.init();
         this.addEventListeners();
@@ -46,6 +49,17 @@ class Dog3D {
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        // Improved color and tone mapping for softer, more lifelike shading
+        if (THREE && THREE.ACESFilmicToneMapping) {
+            this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            this.renderer.toneMappingExposure = 1.0;
+        }
+        if (this.renderer.outputColorSpace !== undefined && THREE && THREE.SRGBColorSpace) {
+            this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+        }
+        if (this.renderer.physicallyCorrectLights !== undefined) {
+            this.renderer.physicallyCorrectLights = true;
+        }
         
         // Create lighting
         this.setupLighting();
@@ -185,9 +199,11 @@ class Dog3D {
         rightEyeHighlight.position.set(0.23, 0.43, 0.4);
         head.add(rightEyeHighlight);
         
-        // Store pupils for animation
+        // Store pupils and eye whites for animation
         this.leftPupil = leftEyePupil;
         this.rightPupil = rightEyePupil;
+        this.leftEyeWhite = leftEyeWhite;
+        this.rightEyeWhite = rightEyeWhite;
         
         // Ears - Made smaller and cuter
         const earGeometry = new THREE.SphereGeometry(0.2, 16, 16);
@@ -394,16 +410,23 @@ class Dog3D {
     }
     
     blink() {
-        if (this.leftPupil && this.rightPupil) {
-            // Scale down pupils to simulate closed eyes
-            this.leftPupil.scale.setScalar(0.1);
-            this.rightPupil.scale.setScalar(0.1);
-            
+        // Eyelid-like blink by squashing whites and pupils on Y
+        if (this.leftPupil && this.rightPupil && this.leftEyeWhite && this.rightEyeWhite) {
+            const meshes = [this.leftPupil, this.rightPupil, this.leftEyeWhite, this.rightEyeWhite];
+            meshes.forEach(m => m.scale.y = 0.05);
             setTimeout(() => {
-                this.leftPupil.scale.setScalar(1);
-                this.rightPupil.scale.setScalar(1);
-            }, 150); // Blink duration
+                meshes.forEach(m => m.scale.y = 1);
+            }, 120);
         }
+    }
+
+    // Chase mode for excited following (e.g., hover over hero title)
+    startChaseMode() {
+        this.chaseMode = true;
+    }
+
+    stopChaseMode() {
+        this.chaseMode = false;
     }
     
     addEventListeners() {
@@ -585,23 +608,28 @@ class Dog3D {
         
         if (!this.dog) return;
         
-        const time = Date.now() * 0.001;
+        const now = performance.now();
+        const time = now * 0.001;
+        const dt = Math.min(0.05, Math.max(0.001, (now - (this.lastTime || now)) / 1000));
+        this.lastTime = now;
         
         // Smooth cursor following with pupil tracking - Fixed inverted Y movement
         this.targetRotation.y = this.mouse.x * 0.3;
         this.targetRotation.x = -this.mouse.y * 0.2; // Fixed: Inverted Y movement
         
         // Lerp for smooth head movement
-        this.head.rotation.y += (this.targetRotation.y - this.head.rotation.y) * 0.05;
-        this.head.rotation.x += (this.targetRotation.x - this.head.rotation.x) * 0.05;
+        this.head.rotation.y += (this.targetRotation.y - this.head.rotation.y) * 0.08;
+        this.head.rotation.x += (this.targetRotation.x - this.head.rotation.x) * 0.08;
         
         // Pupil tracking (follow mouse more closely) - Fixed positions for smaller dog
         if (this.leftPupil && this.rightPupil) {
             const pupilMovement = 0.015;
-            this.leftPupil.position.x = -0.2 + (this.mouse.x * pupilMovement);
-            this.leftPupil.position.y = 0.4 + (-this.mouse.y * pupilMovement); // Fixed: Inverted Y movement
-            this.rightPupil.position.x = 0.2 + (this.mouse.x * pupilMovement);
-            this.rightPupil.position.y = 0.4 + (-this.mouse.y * pupilMovement); // Fixed: Inverted Y movement
+            const px = THREE.MathUtils.clamp(this.mouse.x * pupilMovement, -0.02, 0.02);
+            const py = THREE.MathUtils.clamp(-this.mouse.y * pupilMovement, -0.02, 0.02);
+            this.leftPupil.position.x = -0.2 + px;
+            this.leftPupil.position.y = 0.4 + py;
+            this.rightPupil.position.x = 0.2 + px;
+            this.rightPupil.position.y = 0.4 + py;
         }
         
         // Breathing animation (chest rise and fall)
@@ -617,16 +645,38 @@ class Dog3D {
         
         // Gentle floating animation with walking movement
         this.dog.position.y = Math.sin(time * 0.5) * 0.05;
+        // Subtle head bob while moving
+        this.head.position.y = 0.3 + Math.abs(Math.sin(time * 5)) * 0.03;
         
-        // Add walking movement following mouse
-        const targetX = this.mouse.x * 0.5;
-        const targetZ = this.mouse.y * 0.3;
-        
-        this.dog.position.x += (targetX - this.dog.position.x) * 0.02;
-        this.dog.position.z += (targetZ - this.dog.position.z) * 0.02;
-        
-        // Gentle body rotation
-        this.dog.rotation.y = Math.sin(time * 0.3) * 0.03;
+        // Add walking movement following mouse (faster in chase mode)
+        const targetX = this.mouse.x * 0.6;
+        const targetZ = this.mouse.y * 0.35;
+        const followSpeed = this.chaseMode ? 0.12 : 0.03;
+        this.dog.position.x += (targetX - this.dog.position.x) * followSpeed * dt * 60;
+        this.dog.position.z += (targetZ - this.dog.position.z) * (followSpeed * 0.8) * dt * 60;
+
+        // Compute smoothed velocity for animation cues
+        this.velocity.x = this.velocity.x * 0.9 + (targetX - this.dog.position.x) * 0.1;
+        this.velocity.z = this.velocity.z * 0.9 + (targetZ - this.dog.position.z) * 0.1;
+
+        // Turn body toward movement direction smoothly
+        const desiredYaw = Math.atan2((targetX - this.dog.position.x), (targetZ - this.dog.position.z));
+        if (isFinite(desiredYaw)) {
+            this.dog.rotation.y += (desiredYaw - this.dog.rotation.y) * 0.08;
+        }
+
+        // Body lean based on lateral velocity for cuteness
+        this.dog.rotation.z = THREE.MathUtils.clamp(-this.velocity.x * 0.15, -0.2, 0.2);
+
+        // Simple leg walk cycle based on speed
+        if (this.legs && this.legs.length === 4) {
+            const speedMag = THREE.MathUtils.clamp(Math.hypot(this.velocity.x, this.velocity.z) * 4, 0, 1);
+            const swing = Math.sin(time * (this.chaseMode ? 9 : 6)) * 0.35 * speedMag;
+            this.legs[0].rotation.x = swing;      // front left
+            this.legs[1].rotation.x = -swing;     // front right
+            this.legs[2].rotation.x = -swing;     // back left
+            this.legs[3].rotation.x = swing;      // back right
+        }
         
         // Subtle ear movement
         if (this.head && this.head.children) {
@@ -704,6 +754,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Wait a bit for the canvas to be properly sized
         setTimeout(() => {
             dog3DInstance = new Dog3D('dog-3d-canvas');
+            // Expose globally for homepage interactions
+            window.dog3DInstance = dog3DInstance;
         }, 100);
     }
 });
