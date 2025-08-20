@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Anabel Dog Grooming</title>
+    <meta name="description" content="Get answers to common questions about our dog grooming services, policies, pricing, and what to expect during your pet's visit.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header id="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <div class="paw-icon">🐾</div>
+                    <span class="brand-name">Anabel Grooming</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/services.html" class="nav-link">Services</a></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                    <li><a href="/gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="/faq.html" class="nav-link active">FAQ</a></li>
+                    <li><a href="/contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <a href="/contact.html" class="btn btn-primary nav-cta">Contact Us</a>
+                
+                <div class="nav-toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- FAQ Hero -->
+        <section class="faq-hero">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <div class="paw-divider">🐾</div>
+                <p class="hero-subtitle">Find answers to common questions about our grooming services, policies, and what to expect during your pet's visit.</p>
+                
+                <div class="search-bar">
+                    <input type="text" id="faq-search" placeholder="Search for questions..." aria-label="Search FAQ">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Categories -->
+        <section class="faq-categories">
+            <div class="container">
+                <h2>Browse by Category</h2>
+                <div class="category-filters">
+                    <button class="category-btn active" data-category="all">All Questions</button>
+                    <button class="category-btn" data-category="booking">Booking & Scheduling</button>
+                    <button class="category-btn" data-category="services">Services & Pricing</button>
+                    <button class="category-btn" data-category="preparation">Preparation & Care</button>
+                    <button class="category-btn" data-category="policies">Policies & Requirements</button>
+                    <button class="category-btn" data-category="health">Health & Safety</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion -->
+        <section class="faq-accordion">
+            <div class="container">
+                <!-- Booking & Scheduling -->
+                <div class="faq-item" data-category="booking">
+                    <div class="faq-question">
+                        <h3>How do I book an appointment?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can book an appointment by calling us at <a href="tel:+441234567890">01234 567890</a>, emailing us at <a href="mailto:hello@anabelgrooming.co.uk">hello@anabelgrooming.co.uk</a>, or using our contact form. We recommend booking in advance as our schedule fills up quickly, especially during busy periods.</p>
+                        <p>When booking, please let us know:</p>
+                        <ul>
+                            <li>Your dog's breed and size</li>
+                            <li>Preferred service (Bath & Brush, Full Groom, or Puppy Groom)</li>
+                            <li>Any special requirements or concerns</li>
+                            <li>Your preferred date and time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="services">
+                    <div class="faq-question">
+                        <h3>How long does a grooming session take?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The duration depends on the service and your dog's size and coat condition:</p>
+                        <ul>
+                            <li><strong>Bath & Brush:</strong> 1.5 - 2 hours</li>
+                            <li><strong>Full Groom:</strong> 2.5 - 3.5 hours</li>
+                            <li><strong>Puppy Groom:</strong> 1 - 1.5 hours</li>
+                        </ul>
+                        <p>Dogs with heavily matted coats or those requiring extra care may need additional time. We never rush the process and always prioritize your pet's comfort and safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="health">
+                    <div class="faq-question">
+                        <h3>Do you groom nervous or anxious dogs?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I have extensive experience working with nervous, anxious, and reactive dogs. I use gentle handling techniques and take extra time to help your pet feel comfortable.</p>
+                        <p>For anxious dogs, I:</p>
+                        <ul>
+                            <li>Allow extra time for them to settle and get familiar with the environment</li>
+                            <li>Use positive reinforcement and treats throughout the process</li>
+                            <li>Take breaks as needed to prevent overwhelming your pet</li>
+                            <li>Work at your dog's pace and comfort level</li>
+                            <li>Discuss any specific concerns or triggers beforehand</li>
+                        </ul>
+                        <p>Please let me know about your dog's temperament when booking so I can prepare accordingly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="policies">
+                    <div class="faq-question">
+                        <h3>What vaccination requirements do you have?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For the health and safety of all pets in our care, all dogs must be up-to-date with their vaccinations:</p>
+                        <ul>
+                            <li><strong>Core vaccines:</strong> Distemper, Hepatitis, Parvovirus, Parainfluenza, and Kennel Cough</li>
+                            <li><strong>Puppies:</strong> Must be at least 12 weeks old and have completed their second round of vaccinations</li>
+                            <li><strong>Annual boosters:</strong> Must be current (within the last 12 months)</li>
+                        </ul>
+                        <p>Please bring your vaccination record or be prepared to provide your vet's contact information for verification. This policy protects all the pets in our care and ensures a safe environment for everyone.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="preparation">
+                    <div class="faq-question">
+                        <h3>What if my dog's coat is severely matted?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Severely matted coats require special care and may incur additional charges of £10-£20, depending on the extent of matting. Here's what you should know:</p>
+                        <ul>
+                            <li><strong>Assessment:</strong> I'll evaluate the matting and discuss options with you before proceeding</li>
+                            <li><strong>Safety first:</strong> If matting is too severe, shaving may be the safest and most humane option</li>
+                            <li><strong>Skin care:</strong> Matted fur can hide skin irritation, which I'll check for and advise on</li>
+                            <li><strong>Prevention:</strong> I'll provide advice on preventing future matting</li>
+                        </ul>
+                        <p>Regular grooming every 6-8 weeks helps prevent severe matting and keeps your dog comfortable.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="services">
+                    <div class="faq-question">
+                        <h3>How often should I have my dog groomed?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The frequency depends on your dog's breed, coat type, and lifestyle:</p>
+                        <ul>
+                            <li><strong>Long-haired breeds:</strong> Every 4-6 weeks for full grooming</li>
+                            <li><strong>Medium-haired breeds:</strong> Every 6-8 weeks</li>
+                            <li><strong>Short-haired breeds:</strong> Every 8-12 weeks or as needed</li>
+                            <li><strong>Puppies:</strong> Every 6-8 weeks to maintain the routine</li>
+                        </ul>
+                        <p>Regular nail trimming should be done every 3-4 weeks, regardless of coat type. I can help you create a grooming schedule that works best for your dog's specific needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="policies">
+                    <div class="faq-question">
+                        <h3>What is your cancellation and no-show policy?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To ensure fair scheduling for all clients, please note our policy:</p>
+                        <ul>
+                            <li><strong>Cancellations:</strong> Please provide at least 24 hours notice to avoid charges</li>
+                            <li><strong>Late cancellations:</strong> Less than 24 hours notice may incur a 50% service charge</li>
+                            <li><strong>No-shows:</strong> Will be charged the full service amount</li>
+                            <li><strong>Emergencies:</strong> Genuine emergencies will be handled case-by-case</li>
+                            <li><strong>Rescheduling:</strong> We're happy to reschedule with adequate notice</li>
+                        </ul>
+                        <p>This policy helps us maintain our schedule and ensures availability for all our clients.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="services">
+                    <div class="faq-question">
+                        <h3>What products do you use for bathing and grooming?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I use only high-quality, professional-grade products that are gentle on your pet's skin and coat:</p>
+                        <ul>
+                            <li><strong>Shampoos:</strong> pH-balanced, hypoallergenic formulas suitable for all skin types</li>
+                            <li><strong>Conditioners:</strong> Moisturizing treatments to keep coats soft and healthy</li>
+                            <li><strong>Specialized products:</strong> Available for sensitive skin, allergies, or specific coat types</li>
+                            <li><strong>Flea treatments:</strong> Medicated shampoos available as add-on services</li>
+                        </ul>
+                        <p>If your dog has specific allergies or skin conditions, please let me know in advance so I can select appropriate products.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="preparation">
+                    <div class="faq-question">
+                        <h3>How should I prepare my dog for their first visit?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To help ensure a positive first experience:</p>
+                        <ul>
+                            <li><strong>Exercise:</strong> A good walk before the appointment can help tire out energetic dogs</li>
+                            <li><strong>Feeding:</strong> Feed your dog at least 2 hours before the appointment (not on an empty stomach, but not right before)</li>
+                            <li><strong>Bathroom break:</strong> Make sure your dog has relieved themselves before arrival</li>
+                            <li><strong>Information:</strong> Bring vaccination records and any special instructions</li>
+                            <li><strong>Comfort items:</strong> A favorite toy or blanket can help anxious dogs feel more secure</li>
+                        </ul>
+                        <p>Don't worry about giving your dog a bath beforehand - that's what we're here for!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="services">
+                    <div class="faq-question">
+                        <h3>Do you offer nail trimming as a standalone service?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! While nail trimming is included in all our grooming services, I also offer it as a quick standalone service for £10.</p>
+                        <p>Nail trimming appointments typically take 15-20 minutes and include:</p>
+                        <ul>
+                            <li>Careful trimming of all nails</li>
+                            <li>Filing to smooth rough edges</li>
+                            <li>Quick paw pad inspection</li>
+                            <li>Optional nail painting with pet-safe polish (+£6)</li>
+                        </ul>
+                        <p>Regular nail maintenance every 3-4 weeks helps prevent overgrowth, splitting, and discomfort for your dog.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="health">
+                    <div class="faq-question">
+                        <h3>What happens if you notice a health issue during grooming?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>As part of my service, I perform a visual health check and will alert you to any concerns I notice:</p>
+                        <ul>
+                            <li><strong>Skin issues:</strong> Rashes, hot spots, unusual lumps, or irritation</li>
+                            <li><strong>Ear problems:</strong> Signs of infection, excessive wax, or odor</li>
+                            <li><strong>Eye concerns:</strong> Discharge, cloudiness, or irritation</li>
+                            <li><strong>Dental issues:</strong> Severe tartar buildup, broken teeth, or gum problems</li>
+                            <li><strong>Mobility issues:</strong> Limping, stiffness, or sensitivity</li>
+                        </ul>
+                        <p>I'll discuss any findings with you and recommend consulting with your veterinarian when appropriate. Early detection can prevent minor issues from becoming serious health problems.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="policies">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For your convenience, I accept multiple payment methods:</p>
+                        <ul>
+                            <li><strong>Cash:</strong> Always welcome</li>
+                            <li><strong>Card payments:</strong> Visa, Mastercard, and contactless payments</li>
+                            <li><strong>Bank transfer:</strong> For advance bookings</li>
+                            <li><strong>Mobile payments:</strong> Apple Pay and Google Pay</li>
+                        </ul>
+                        <p>Payment is due at the time of service completion. For regular clients, I'm happy to discuss monthly payment arrangements for multiple pets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Still Have Questions -->
+        <section class="faq-contact">
+            <div class="container">
+                <div class="contact-card">
+                    <h2>Still Have Questions?</h2>
+                    <p>Can't find the answer you're looking for? I'm here to help! Feel free to get in touch with any specific questions about your pet's grooming needs.</p>
+                    
+                    <div class="contact-options">
+                        <div class="contact-option">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h4>Call Me</h4>
+                                <p><a href="tel:+441234567890">01234 567890</a></p>
+                                <small>Mon-Fri: 9AM-5PM, Sat: 9AM-4PM</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-option">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-details">
+                                <h4>Email Me</h4>
+                                <p><a href="mailto:hello@anabelgrooming.co.uk">hello@anabelgrooming.co.uk</a></p>
+                                <small>I'll respond as soon as paws-ible!</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-option">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-details">
+                                <h4>Contact Form</h4>
+                                <p><a href="/contact.html">Send a message</a></p>
+                                <small>Perfect for detailed questions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-brand">
+                        <div class="paw-icon">🐾</div>
+                        <span class="brand-name">Anabel Grooming</span>
+                    </div>
+                    <p>Professional dog grooming services with a personal touch. Your pet's comfort and happiness is our priority.</p>
+                    <div class="qualification-badge">
+                        <div class="badge-icon">🎓</div>
+                        <span>City & Guilds Level 3 Qualified</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/gallery.html">Gallery</a></li>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Details</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <a href="tel:+441234567890">01234 567890</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <a href="mailto:hello@anabelgrooming.co.uk">hello@anabelgrooming.co.uk</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>123 High Street, Your City, YC1 2AB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <span class="social-icon">📷</span>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-link">
+                            <span class="social-icon">📘</span>
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Anabel Dog Grooming. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/global.js"></script>
+    <script src="js/faq.js"></script>
+</body>
+</html>

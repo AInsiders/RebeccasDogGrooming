@@ -1,0 +1,356 @@
+/* ==========================================================================
+   ANABEL DOG GROOMING - GLOBAL STYLES
+   Design System: Pink & Yellow Theme
+   ========================================================================== */
+
+/* CSS Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-cream);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM - CSS VARIABLES
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --pink-light: #FDE2E4;      /* Light Pink (primary surfaces) */
+    --yellow-soft: #FFF3B0;     /* Soft Yellow (buttons/accents) */
+    --blush: #FFCDE1;           /* Blush (secondary accents) */
+    --bg-cream: #FFF9F2;        /* Cream (page background) */
+    --text-primary: #4B3A2F;    /* Text Primary (warm brown) */
+    --text-secondary: #7D6A5D;  /* Text Secondary (taupe) */
+    
+    /* Additional utility colors */
+    --white: #ffffff;
+    --pink-gradient-start: #FDE2E4;
+    --pink-gradient-end: #FFF9F2;
+    
+    /* Typography */
+    --font-heading: 'Quicksand', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Border radius */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 24px;
+    --radius-pill: 50px;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;   /* 8px */
+    --space-sm: 1rem;     /* 16px */
+    --space-md: 1.5rem;   /* 24px */
+    --space-lg: 2rem;     /* 32px */
+    --space-xl: 3rem;     /* 48px */
+    --space-2xl: 4rem;    /* 64px */
+    --space-3xl: 6rem;    /* 96px */
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(75, 58, 47, 0.1);
+    --shadow-md: 0 4px 16px rgba(75, 58, 47, 0.15);
+    --shadow-lg: 0 8px 32px rgba(75, 58, 47, 0.2);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-lg);
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+p {
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   LAYOUT UTILITIES
+   ========================================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-normal);
+    white-space: nowrap;
+    min-height: 48px;
+}
+
+.btn-primary {
+    background-color: var(--yellow-soft);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background-color: #ffe892;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--pink-light);
+}
+
+.btn-outline:hover {
+    background-color: var(--pink-light);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: var(--space-xs) var(--space-md);
+    font-size: 0.875rem;
+    min-height: 36px;
+}
+
+.btn-lg {
+    padding: var(--space-md) var(--space-2xl);
+    font-size: 1.125rem;
+    min-height: 56px;
+}
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition-normal);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.card-pink-border {
+    border: 2px solid var(--pink-light);
+}
+
+.card-yellow-glow:hover {
+    box-shadow: 0 8px 32px rgba(255, 243, 176, 0.3);
+}
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+
+section {
+    padding: var(--space-3xl) 0;
+}
+
+.section-pink {
+    background-color: var(--pink-light);
+}
+
+.section-yellow {
+    background-color: var(--yellow-soft);
+}
+
+.section-blush {
+    background-color: var(--blush);
+}
+
+/* ==========================================================================
+   DECORATIVE ELEMENTS
+   ========================================================================== */
+
+.paw-divider {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: var(--space-lg) 0;
+    opacity: 0.6;
+}
+
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    :root {
+        --space-3xl: 4rem;
+        --space-2xl: 3rem;
+    }
+    
+    .container {
+        padding: 0 var(--space-sm);
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .btn-lg {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+/* Focus styles */
+.btn:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid var(--yellow-soft);
+    outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #000000;
+        --text-secondary: #333333;
+    }
+    
+    .btn-outline {
+        border-width: 3px;
+    }
+    
+    .card {
+        border: 2px solid var(--text-primary);
+    }
+}
