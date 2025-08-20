@@ -6,7 +6,7 @@
    HOMEPAGE STYLES
    ========================================================================== */
 
-/* Hero Section with 3D Dog */
+/* Hero Section with Interactive Background */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -18,19 +18,68 @@
     justify-content: center;
 }
 
-.hero-3d-canvas {
+.hero-interactive-bg {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 1;
+    pointer-events: none;
 }
 
-#dog-3d-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
+.hero-interactive-bg:hover {
+    pointer-events: auto;
+}
+
+/* Floating Elements */
+.floating-element {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    will-change: transform, opacity;
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+.floating-element.paw-print {
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    animation-delay: var(--delay, 0s);
+}
+
+.floating-element.bubble {
+    font-size: 20px;
+    opacity: 0.6;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+    animation: bubbleFloat 8s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.floating-element.heart {
+    font-size: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    animation: heartBeat 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.floating-element.sparkle {
+    font-size: 18px;
+    opacity: 0.7;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+    animation: sparkleTwinkle 5s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Gradient Overlay */
+.bg-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
 }
 
 .hero-content {
@@ -2944,5 +2993,60 @@
     .popular-searches {
         flex-direction: column;
         gap: var(--space-xs);
+    }
+}
+
+/* Floating Animations */
+@keyframes gentleFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-15px) rotate(2deg); 
+    }
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { 
+        transform: translateY(0px) scale(1); 
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.1); 
+        opacity: 0.8;
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+    }
+    25% { 
+        transform: scale(1.1) rotate(1deg); 
+    }
+    50% { 
+        transform: scale(1) rotate(0deg); 
+    }
+    75% { 
+        transform: scale(1.05) rotate(-1deg); 
+    }
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.7;
+    }
+    25% { 
+        transform: scale(1.2) rotate(90deg); 
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1) rotate(180deg); 
+        opacity: 0.7;
+    }
+    75% { 
+        transform: scale(1.1) rotate(270deg); 
+        opacity: 0.9;
     }
 }

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialCarousel();
     initServiceCardAnimations();
     initScrollRevealAnimations();
-    wireHeroHoverForChaseMode();
+    initHeroInteractions();
 });
 
 /* ==========================================================================
@@ -233,20 +233,66 @@ function initHeroTextAnimation() {
     }
 }
 
-// Make hero title hover trigger excited chase mode on the 3D dog
-function wireHeroHoverForChaseMode() {
+// Enhanced hero interactions for the new interactive background
+function initHeroInteractions() {
     const heroTitle = document.querySelector('.hero-text-panel h1');
-    if (!heroTitle) return;
+    const heroPanel = document.querySelector('.hero-text-panel');
+    
+    if (!heroTitle || !heroPanel) return;
+    
+    // Add subtle hover effects to the hero panel
+    heroPanel.addEventListener('mouseenter', () => {
+        heroPanel.style.transform = 'translateY(-5px) scale(1.02)';
+        heroPanel.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+    });
+    
+    heroPanel.addEventListener('mouseleave', () => {
+        heroPanel.style.transform = 'translateY(0) scale(1)';
+        heroPanel.style.boxShadow = 'var(--shadow-lg)';
+    });
+    
+    // Add sparkle effect when hovering the title
     heroTitle.addEventListener('mouseenter', () => {
-        if (window.dog3DInstance && typeof window.dog3DInstance.startChaseMode === 'function') {
-            window.dog3DInstance.startChaseMode();
-        }
+        createSparkleEffect(heroTitle);
     });
-    heroTitle.addEventListener('mouseleave', () => {
-        if (window.dog3DInstance && typeof window.dog3DInstance.stopChaseMode === 'function') {
-            window.dog3DInstance.stopChaseMode();
-        }
-    });
+}
+
+function createSparkleEffect(element) {
+    const rect = element.getBoundingClientRect();
+    const sparkles = ['✨', '💫', '⭐', '🌟'];
+    
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+            sparkle.style.fontSize = '20px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.opacity = '0';
+            sparkle.style.transform = 'scale(0)';
+            sparkle.style.transition = 'all 0.6s ease-out';
+            
+            document.body.appendChild(sparkle);
+            
+            // Animate in
+            setTimeout(() => {
+                sparkle.style.opacity = '1';
+                sparkle.style.transform = 'scale(1) translateY(-20px)';
+            }, 10);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                sparkle.style.opacity = '0';
+                sparkle.style.transform = 'scale(0) translateY(-40px)';
+                setTimeout(() => {
+                    document.body.removeChild(sparkle);
+                }, 600);
+            }, 300);
+        }, i * 100);
+    }
 }
 
 /* ==========================================================================
@@ -270,13 +316,13 @@ function initFloatingElements() {
    ========================================================================== */
 
 function initParallaxEffect() {
-    const parallaxElements = document.querySelectorAll('.hero-3d-canvas');
+    const parallaxElements = document.querySelectorAll('.hero-interactive-bg');
     
     if (parallaxElements.length === 0) return;
     
     function updateParallax() {
         const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
+        const rate = scrolled * -0.3; // Reduced for subtlety
         
         parallaxElements.forEach(element => {
             element.style.transform = `translateY(${rate}px)`;
